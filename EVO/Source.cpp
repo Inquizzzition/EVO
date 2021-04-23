@@ -2,7 +2,7 @@
 #include <conio.h>
 
 int main() {
-	Field f(65, 64, 1000, 300, 500);
+	Field f(64, 64, 1000, 300, 500, 10, 40, 100, true);
 	while (true) {
 		f.next_day();
 		if (_kbhit()) {

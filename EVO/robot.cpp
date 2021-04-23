@@ -87,8 +87,8 @@ void Robot::set_rand_programm() {
 
 void Robot::addhp(int h) {
 	hp += h;
-	//if (hp > 120)
-	//	hp = 120;
+	if (hp > 120)
+		hp = 120;
 }
 
 void Robot::setCoord(Vec2 v) {

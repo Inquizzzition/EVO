@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "struct.h"
+#include <Windows.h>
 
 class Gui {
 private:
