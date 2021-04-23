@@ -10,7 +10,8 @@ Field::Field(int size, int robo_n, int food_n, int wall_n, int toxic_n) :
 	robo_n(robo_n), robo(robo_n),
 	food_n(food_n), food(0),
 	wall_n(wall_n), wall(0),
-	toxic_n(toxic_n), toxic(0)
+	toxic_n(toxic_n), toxic(0),
+	gui(size, size), f(true)
 {
 	for (int i = 1; i < size-1; ++i) {
 		for (int j = 1; j < size-1; ++j) {
@@ -29,6 +30,19 @@ Field::Field(int size, int robo_n, int food_n, int wall_n, int toxic_n) :
 		}
 	}
 	add_fwt();
+	for (int i = 0; i < size; ++i) {
+		for (int j = 0; j < size; ++j) {
+			gui.draw(i, j, field[i][j]);
+		}
+	}
+	gui.display();
+}
+
+void Field::chF() {
+	if (f)
+		f = false;
+	else
+		f = true;
 }
 
 void Field::add_fwt() {
@@ -38,6 +52,7 @@ void Field::add_fwt() {
 		if (field[x][y] == Obj::null) {
 			field[x][y] = Obj::food;
 			food++;
+			gui.draw(x, y, Obj::food);
 		}
 	}
 	while (wall != wall_n) {
@@ -46,6 +61,7 @@ void Field::add_fwt() {
 		if (field[x][y] == Obj::null) {
 			field[x][y] = Obj::wall;
 			wall++;
+			gui.draw(x, y, Obj::wall);
 		}
 	}
 	while (toxic != toxic_n) {
@@ -54,6 +70,7 @@ void Field::add_fwt() {
 		if (field[x][y] == Obj::null) {
 			field[x][y] = Obj::toxic;
 			toxic++;
+			gui.draw(x, y, Obj::toxic);
 		}
 	}
 }
@@ -238,6 +255,15 @@ void Field::next_day() {
 			robots[i].see(field[x][y+1]);
 			break;
 		}
+	}
+	if (f) {
+		gui.clear();
+		for (int i = 0; i < size; ++i) {
+			for (int j = 0; j < size; ++j) {
+				gui.draw(i, j, field[i][j]);
+			}
+		}
+		gui.display();
 	}
 	add_fwt();
 	if (robo == 0) {

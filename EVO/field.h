@@ -4,9 +4,11 @@
 #include <sstream>
 #include <iostream>
 #include "robot.h"
+#include "gui.h"
 
 class Field {
 private:
+	Gui gui;
 	std::vector<std::vector<Obj>> field;
 	std::vector<Robot> robots;
 	std::vector<std::vector<int>> best_programm;
@@ -16,8 +18,10 @@ private:
 	int wall_n; int toxic;
 	int toxic_n; int robo;
 	int era;
+	bool f;
 	void add_fwt();
 public:
+	void chF();
 	void new_era();
 	void next_day();
 	void seetocons();
