@@ -5,6 +5,7 @@
 #include <iostream>
 #include "robot.h"
 #include "gui.h"
+#include <fstream>
 
 class Field {
 private:
@@ -20,6 +21,7 @@ private:
 	int era;
 	bool f;
 	void add_fwt();
+	std::fstream fout;
 public:
 	void chF();
 	void new_era();

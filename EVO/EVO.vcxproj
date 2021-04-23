@@ -153,6 +153,9 @@
     <ClInclude Include="robot.h" />
     <ClInclude Include="struct.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="inp.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

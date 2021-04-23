@@ -5,7 +5,7 @@ Field::Field(int size, int robo_n, int food_n, int wall_n, int toxic_n) :
 	best_programm(0),
 	robots(robo_n),
 	day(0),
-	era(0),
+	era(1),
 	size(size),
 	robo_n(robo_n), robo(robo_n),
 	food_n(food_n), food(0),
@@ -29,6 +29,7 @@ Field::Field(int size, int robo_n, int food_n, int wall_n, int toxic_n) :
 			temp--;
 		}
 	}
+	fout.open("inp.csv", std::ios::out | std::ios::app);
 	add_fwt();
 	for (int i = 0; i < size; ++i) {
 		for (int j = 0; j < size; ++j) {
@@ -273,8 +274,9 @@ void Field::next_day() {
 
 void Field::new_era() {
 	int bs = best_programm.size();
-	era++;
 	std::cout << era << " " << day << std::endl;
+	fout << era << "," << day << "\n";
+	era++;
 	day = 0;
 	field = std::vector<std::vector<Obj>>(size, std::vector<Obj>(size, Obj::wall));
 	
