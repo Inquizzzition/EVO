@@ -28,6 +28,8 @@ Field::Field(int size, int robo_n, int food_n, int wall_n, int toxic_n, int tree
 		if (field[x][y] == Obj::null) {
 			field[x][y] = Obj::robot;
 			robots[temp-1] = Robot(Vec2(x,y),50);
+			if (true_generation)
+				robots[temp - 1].f = true;
 			robots[temp - 1].set_rand_programm();
 			temp--;
 		}
@@ -53,7 +55,7 @@ void Field::chF() {
 }
 
 void Field::add_fwt() {
-	while (food != food_n) {
+	while (food < food_n) {
 		int x = rand() % size;
 		int y = rand() % size;
 		if (field[x][y] == Obj::null) {
@@ -61,7 +63,7 @@ void Field::add_fwt() {
 			food++;
 		}
 	}
-	while (wall != wall_n) {
+	while (wall < wall_n) {
 		int x = rand() % size;
 		int y = rand() % size;
 		if (field[x][y] == Obj::null) {
@@ -69,7 +71,7 @@ void Field::add_fwt() {
 			wall++;
 		}
 	}
-	while (toxic != toxic_n) {
+	while (toxic < toxic_n) {
 		int x = rand() % size;
 		int y = rand() % size;
 		if (field[x][y] == Obj::null) {
@@ -383,7 +385,7 @@ void Field::next_day() {
 	}
 	if (!true_generation)
 		add_fwt();
-	else if(day % 3 == 0)
+	else if(day % 5 == 0)
 			heal_trpo();
 	if (day > 50000) {
 		robo = 0;
@@ -430,6 +432,8 @@ void Field::new_era() {
 			field[x][y] = Obj::robot;
 			robots[temp - 1] = Robot(Vec2(x, y), 50);
 			robots[temp - 1].set_programm(best_programm[bs-1]);
+			if (true_generation)
+				robots[temp - 1].f = true;
 			temp--;
 		}
 	}
@@ -450,6 +454,8 @@ void Field::new_era() {
 			field[x][y] = Obj::robot;
 			robots[temp - 1] = Robot(Vec2(x, y), 50);
 			robots[temp - 1].set_mutate_programm(best_programm[bs - 1], 2);
+			if (true_generation)
+				robots[temp - 1].f = true;
 			temp--;
 		}
 	}
@@ -460,6 +466,8 @@ void Field::new_era() {
 			field[x][y] = Obj::robot;
 			robots[temp - 1] = Robot(Vec2(x, y), 50);
 			robots[temp - 1].set_mutate_programm(best_programm[bs - 1], 3);
+			if (true_generation)
+				robots[temp - 1].f = true;
 			temp--;
 		}
 	}
@@ -469,6 +477,8 @@ void Field::new_era() {
 		if (field[x][y] == Obj::null) {
 			field[x][y] = Obj::robot;
 			robots[temp - 1] = Robot(Vec2(x, y), 50);
+			if (true_generation)
+				robots[temp - 1].f = true;
 			robots[temp - 1].set_rand_programm();
 			temp--;
 		}

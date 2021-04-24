@@ -12,6 +12,7 @@ private:
 	int iter;
 	int dir;
 public:
+	bool f;
 	bool live;
 	Robot();
 	Robot(Vec2 coord, int hp);

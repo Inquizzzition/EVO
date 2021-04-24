@@ -6,7 +6,8 @@ Robot::Robot(Vec2 coord, int hp) :
 	iter(0),
 	programm(32),
 	dir(rand()%4),
-	live(true)
+	live(true),
+	f(false)
 {}
 
 Robot::Robot() :
@@ -15,7 +16,8 @@ Robot::Robot() :
 	iter(0),
 	programm(32),
 	dir(rand() % 4),
-	live(false)
+	live(false),
+	f(false)
 {}
 
 Action Robot::update() {
@@ -87,7 +89,7 @@ void Robot::set_rand_programm() {
 
 void Robot::addhp(int h) {
 	hp += h;
-	if (hp > 120)
+	if (f && hp > 120)
 		hp = 120;
 }
 
